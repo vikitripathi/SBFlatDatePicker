@@ -24,10 +24,10 @@
     [datePicker setDelegate:self];
     
     //OPTIONAL: Choose the background color
-    [datePicker setBackgroundColor:[UIColor colorWithRed:.93 green:.93 blue:.93 alpha:1]];
+    [datePicker setBackgroundColor:[UIColor whiteColor]];
     
     //OPTIONAL - Choose Date Range (0 starts At Today. Non continous sets acceptable (use some enumartion for [indexSet addIndex:yourIndex];
-    datePicker.dayRange = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)];
+    datePicker.dayRange = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 365)];
     
     
     //OPTIONAL - Choose Minute  Non continous sets acceptable (use some enumartion for [indexSet addIndex:yourIndex];

@@ -32,12 +32,12 @@
 //Data Picker
 @interface SBFlatDatePicker : UIView <UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
+//Date & Time Ranges
 @property NSMutableIndexSet* dayRange;
 @property NSMutableIndexSet* minuterange;
 
-
+//Format of Day column
 @property NSString* dayFormat;
-@property NSString* minuteFormat;
 
 
 @property (nonatomic, weak) id<SBFLatDatePickerDelegate> delegate;

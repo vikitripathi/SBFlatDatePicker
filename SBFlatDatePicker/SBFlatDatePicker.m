@@ -14,14 +14,14 @@
 #define IS_OS_6_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0 )
 #define IS_OS_7_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
 
-//Editable macros
-#define SAVE_BUTTON_COLOR [UIColor colorWithRed:.45 green:.76 blue:.19 alpha:1]
 
-#define TEXT_COLOR [UIColor colorWithRed:.58 green:.60 blue:.67 alpha:1]
-#define SELECTED_TEXT_COLOR [UIColor colorWithRed:.45 green:.76 blue:.19 alpha:1]
-#define LINE_COLOR [UIColor colorWithRed:.85 green:.85 blue:.85 alpha:1]
-#define SAVE_AREA_COLOR [UIColor colorWithRed:.97 green:.97 blue:.97 alpha:1]
-#define BAR_SEL_COLOR [UIColor colorWithRed:.97 green:.97 blue:.97 alpha:.5]
+//Editable macros
+#define TEXT_COLOR [UIColor colorWithWhite:0.5 alpha:1.0]
+#define SELECTED_TEXT_COLOR [UIColor whiteColor]
+#define LINE_COLOR [UIColor colorWithWhite:0.80 alpha:1.0]
+#define SAVE_AREA_COLOR [UIColor colorWithWhite:0.95 alpha:1.0]
+#define BAR_SEL_COLOR [UIColor colorWithRed:.45 green:.76 blue:.19 alpha:.8]
+#define SAVE_BUTTON_COLOR [UIColor colorWithRed:.45 green:.76 blue:.19 alpha:1]
 
 //Editable constants
 static const float VALUE_HEIGHT = 65.0;
@@ -322,13 +322,13 @@ const float LBL_BORDER_OFFSET = 8.0;
     
     //Layer gradient
     CAGradientLayer *gradientLayerTop = [CAGradientLayer layer];
-    gradientLayerTop.frame = CGRectMake(0.0, 0.0, pickerView.frame.size.width, PICKER_HEIGHT/2.0);
+    gradientLayerTop.frame = CGRectMake(0.0, 0.0, pickerView.frame.size.width, PICKER_HEIGHT/3.0);
     gradientLayerTop.colors = [NSArray arrayWithObjects:(id)[UIColor colorWithWhite:1.0 alpha:0.0].CGColor, (id)self.backgroundColor.CGColor, nil];
     gradientLayerTop.startPoint = CGPointMake(0.0f, 0.7f);
     gradientLayerTop.endPoint = CGPointMake(0.0f, 0.0f);
     
     CAGradientLayer *gradientLayerBottom = [CAGradientLayer layer];
-    gradientLayerBottom.frame = CGRectMake(0.0, PICKER_HEIGHT/2.0, pickerView.frame.size.width, PICKER_HEIGHT/2.0);
+    gradientLayerBottom.frame = CGRectMake(0.0, PICKER_HEIGHT/.5, pickerView.frame.size.width, PICKER_HEIGHT/3.0);
     gradientLayerBottom.colors = gradientLayerTop.colors;
     gradientLayerBottom.startPoint = CGPointMake(0.0f, 0.3f);
     gradientLayerBottom.endPoint = CGPointMake(0.0f, 1.0f);
@@ -546,9 +546,9 @@ const float LBL_BORDER_OFFSET = 8.0;
 //Check the screen size
 - (void)checkScreenSize {
     if(IS_WIDESCREEN) {
-        PICKER_HEIGHT = (self.frame.size.height - SAVE_AREA_HEIGHT- SAVE_AREA_MARGIN_TOP) * .9;
+        PICKER_HEIGHT = (568 - SAVE_AREA_HEIGHT);
     } else {
-        PICKER_HEIGHT = (self.frame.size.height - SAVE_AREA_HEIGHT- SAVE_AREA_MARGIN_TOP)*212/300 * .9;
+        PICKER_HEIGHT = (568 - SAVE_AREA_HEIGHT);
     }
 }
 
