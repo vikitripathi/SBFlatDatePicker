@@ -43,6 +43,10 @@ Simply copy the source files into your project !
     [datePicker.minuterange addIndex:15];
     [datePicker.minuterange addIndex:30];
     [datePicker.minuterange addIndex:45];  //will only allow minute choices every quarter hour
+    
+    //Customize date format
+    datePicker.dayFormat = @"EEE MMM dd";
+
 ``` 
 
 
