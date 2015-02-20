@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SBFlatDatePicker.h"
+#import "SBFlatDatePickerDelegate.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <SBFLatDatePickerDelegate>
 
 
 @end
