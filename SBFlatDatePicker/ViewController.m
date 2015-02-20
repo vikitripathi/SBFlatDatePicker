@@ -37,6 +37,9 @@
     [datePicker.minuterange addIndex:30];
     [datePicker.minuterange addIndex:45];
     
+    //Customize date format
+    datePicker.dayFormat = @"EEE MMM dd";
+    
     
     
     //Set the data picker as view of the new view controller

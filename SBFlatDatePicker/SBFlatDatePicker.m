@@ -242,8 +242,8 @@ const float LBL_BORDER_OFFSET = 8.0;
     NSDateComponents *offsetComponents = [NSDateComponents new];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"EEE MMM d"];
     
+    formatter.dateFormat = self.dayFormat != nil ? self.dayFormat : @"EEE MMM d";
     
     
     //Default days is 365
@@ -508,9 +508,8 @@ const float LBL_BORDER_OFFSET = 8.0;
     NSDate *newDate = [gregorian dateByAddingComponents:offsetComponents toDate:_selectedDate options:0];
     _selectedDate = newDate;
     
-    //Show new date
-    [_lblWeekDay setText:[self stringFromDate:_selectedDate withFormat:@"EEEE"]];
-    [_lblDayMonth setText:[self stringFromDate:_selectedDate withFormat:@"dd LLLL yyyy"]];
+    //Show new date format
+        _lblDayMonth.text = self.dayFormat != nil ? [self stringFromDate:_selectedDate withFormat:self.dayFormat] : [self stringFromDate:_selectedDate withFormat:@"dd LLLL yyyy"];
 }
 
 - (void)switchToDayPrev {
