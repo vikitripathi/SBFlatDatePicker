@@ -14,6 +14,11 @@
 		A3C01DDE1A971C6F00E6ECFA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3C01DDD1A971C6F00E6ECFA /* Images.xcassets */; };
 		A3C01DE11A971C6F00E6ECFA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3C01DDF1A971C6F00E6ECFA /* LaunchScreen.xib */; };
 		A3C01DED1A971C6F00E6ECFA /* SBFlatDatePickerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C01DEC1A971C6F00E6ECFA /* SBFlatDatePickerTests.m */; };
+		A3C01DF81A971CDC00E6ECFA /* SBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C01DF71A971CDC00E6ECFA /* SBViewController.m */; };
+		A3C01DFF1A971D5200E6ECFA /* SBFlatDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C01DFE1A971D5200E6ECFA /* SBFlatDatePicker.m */; };
+		A3C01E021A9722DB00E6ECFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C01E011A9722DB00E6ECFA /* Foundation.framework */; };
+		A3C01E041A9722E400E6ECFA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C01E031A9722E400E6ECFA /* CoreGraphics.framework */; };
+		A3C01E061A9722EA00E6ECFA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C01E051A9722EA00E6ECFA /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +45,14 @@
 		A3C01DE61A971C6F00E6ECFA /* SBFlatDatePickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SBFlatDatePickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3C01DEB1A971C6F00E6ECFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3C01DEC1A971C6F00E6ECFA /* SBFlatDatePickerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBFlatDatePickerTests.m; sourceTree = "<group>"; };
+		A3C01DF61A971CDC00E6ECFA /* SBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBViewController.h; sourceTree = "<group>"; };
+		A3C01DF71A971CDC00E6ECFA /* SBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBViewController.m; sourceTree = "<group>"; };
+		A3C01DFD1A971D5200E6ECFA /* SBFlatDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBFlatDatePicker.h; sourceTree = "<group>"; };
+		A3C01DFE1A971D5200E6ECFA /* SBFlatDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBFlatDatePicker.m; sourceTree = "<group>"; };
+		A3C01E001A971DCD00E6ECFA /* SBFlatDatePickerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBFlatDatePickerDelegate.h; sourceTree = "<group>"; };
+		A3C01E011A9722DB00E6ECFA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A3C01E031A9722E400E6ECFA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A3C01E051A9722EA00E6ECFA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +60,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3C01E061A9722EA00E6ECFA /* UIKit.framework in Frameworks */,
+				A3C01E041A9722E400E6ECFA /* CoreGraphics.framework in Frameworks */,
+				A3C01E021A9722DB00E6ECFA /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +82,9 @@
 				A3C01DCF1A971C6F00E6ECFA /* SBFlatDatePicker */,
 				A3C01DE91A971C6F00E6ECFA /* SBFlatDatePickerTests */,
 				A3C01DCE1A971C6F00E6ECFA /* Products */,
+				A3C01E051A9722EA00E6ECFA /* UIKit.framework */,
+				A3C01E031A9722E400E6ECFA /* CoreGraphics.framework */,
+				A3C01E011A9722DB00E6ECFA /* Foundation.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,7 +100,10 @@
 		A3C01DCF1A971C6F00E6ECFA /* SBFlatDatePicker */ = {
 			isa = PBXGroup;
 			children = (
+				A3C01DFC1A971D3700E6ECFA /* SBFlatDatePicker */,
 				A3C01DD41A971C6F00E6ECFA /* AppDelegate.h */,
+				A3C01DF61A971CDC00E6ECFA /* SBViewController.h */,
+				A3C01DF71A971CDC00E6ECFA /* SBViewController.m */,
 				A3C01DD51A971C6F00E6ECFA /* AppDelegate.m */,
 				A3C01DD71A971C6F00E6ECFA /* ViewController.h */,
 				A3C01DD81A971C6F00E6ECFA /* ViewController.m */,
@@ -117,6 +139,16 @@
 				A3C01DEB1A971C6F00E6ECFA /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A3C01DFC1A971D3700E6ECFA /* SBFlatDatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				A3C01DFD1A971D5200E6ECFA /* SBFlatDatePicker.h */,
+				A3C01DFE1A971D5200E6ECFA /* SBFlatDatePicker.m */,
+				A3C01E001A971DCD00E6ECFA /* SBFlatDatePickerDelegate.h */,
+			);
+			name = SBFlatDatePicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,7 +251,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3C01DFF1A971D5200E6ECFA /* SBFlatDatePicker.m in Sources */,
 				A3C01DD91A971C6F00E6ECFA /* ViewController.m in Sources */,
+				A3C01DF81A971CDC00E6ECFA /* SBViewController.m in Sources */,
 				A3C01DD61A971C6F00E6ECFA /* AppDelegate.m in Sources */,
 				A3C01DD31A971C6F00E6ECFA /* main.m in Sources */,
 			);
