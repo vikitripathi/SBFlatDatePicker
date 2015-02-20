@@ -9,9 +9,7 @@ Simply copy the source files into your project !
 
 ## UI
 
-<p align="center">
-  <img ![ScreenShot](http://imgur.com/MqKNP7d.jpg) />
-</p>
+  ![ScreenShot](http://imgur.com/MqKNP7d.jpg)
 
 ## Example Usage
 
