@@ -27,14 +27,13 @@
 static const float VALUE_HEIGHT = 65.0;
 static const float SAVE_AREA_HEIGHT = 70.0;
 static const float SAVE_AREA_MARGIN_TOP = 20.0;
-static const float SV_DAYS_WIDTH = 120.0;
-static const float SV_HOURS_WIDTH = 60.0;
-static const float SV_MINUTES_WIDTH = 60.0;
-static const float SV_MERIDIANS_WIDTH = 100.0;
+
 
 //Editable values
 float PICKER_HEIGHT = 600;
 NSString *FONT_NAME = @"HelveticaNeue";
+NSString *BOLD_FONT_NAME = @"HelveticaNeue-Medium";
+
 NSString *NOW = @"Now";
 
 //Static macros and constants
@@ -42,7 +41,6 @@ NSString *NOW = @"Now";
 #define SAVE_AREA_ORIGIN_Y self.bounds.size.height-SAVE_AREA_HEIGHT
 #define PICKER_ORIGIN_Y SAVE_AREA_ORIGIN_Y-SAVE_AREA_MARGIN_TOP-PICKER_HEIGHT
 #define BAR_SEL_ORIGIN_Y PICKER_HEIGHT/2.0-VALUE_HEIGHT/2.0
-static const NSInteger SCROLLVIEW_MOMENTS_TAG = 0;
 
 
 //Custom UIButton
@@ -109,6 +107,7 @@ static const NSInteger SCROLLVIEW_MOMENTS_TAG = 0;
 @interface SBPickerScrollView ()
 @property (nonatomic, strong) NSArray *arrValues;
 @property (nonatomic, strong) UIFont *cellFont;
+@property (nonatomic, strong) UIFont *boldCellFont;
 @property (nonatomic, assign, getter = isScrolling) BOOL scrolling;
 
 @end
@@ -131,7 +130,8 @@ const float LBL_BORDER_OFFSET = 8.0;
         [self setContentInset:UIEdgeInsetsMake(BAR_SEL_ORIGIN_Y, 0.0, BAR_SEL_ORIGIN_Y, 0.0)];
         
         _cellFont = [UIFont fontWithName:FONT_NAME size:txtSize];
-        
+        _boldCellFont = [UIFont fontWithName:BOLD_FONT_NAME size:txtSize];
+
         if(arrayValues)
             _arrValues = [arrayValues copy];
     }
@@ -285,38 +285,38 @@ const float LBL_BORDER_OFFSET = 8.0;
     
     
     //Create the first column (moments) of the picker
-    _svDays = [[SBPickerScrollView alloc] initWithFrame:CGRectMake(0.0, 0.0, SV_DAYS_WIDTH, PICKER_HEIGHT) andValues:_arrDays withTextAlign:NSTextAlignmentRight andTextSize:14.0];
+    _svDays = [[SBPickerScrollView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.frame.size.width*122/320, PICKER_HEIGHT) andValues:_arrDays withTextAlign:NSTextAlignmentRight andTextSize:18];
     _svDays.tag = 0;
     [_svDays setDelegate:self];
     [_svDays setDataSource:self];
     
     //Create the second column (hours) of the picker
-    _svHours = [[SBPickerScrollView alloc] initWithFrame:CGRectMake(SV_DAYS_WIDTH, 0.0, SV_HOURS_WIDTH, PICKER_HEIGHT) andValues:_arrHours withTextAlign:NSTextAlignmentCenter  andTextSize:25.0];
+    _svHours = [[SBPickerScrollView alloc] initWithFrame:CGRectMake(self.frame.size.width*122/320, 0.0, self.frame.size.width*66/320, PICKER_HEIGHT) andValues:_arrHours withTextAlign:NSTextAlignmentCenter  andTextSize:18];
     _svHours.tag = 1;
     [_svHours setDelegate:self];
     [_svHours setDataSource:self];
     
     //Create the third column (minutes) of the picker
-    _svMins = [[SBPickerScrollView alloc] initWithFrame:CGRectMake(_svHours.frame.origin.x+SV_HOURS_WIDTH, 0.0, SV_MINUTES_WIDTH, PICKER_HEIGHT) andValues:_arrMinutes withTextAlign:NSTextAlignmentCenter andTextSize:25.0];
+    _svMins = [[SBPickerScrollView alloc] initWithFrame:CGRectMake(_svHours.frame.origin.x+self.frame.size.width*66/320, 0.0, self.frame.size.width*66/320, PICKER_HEIGHT) andValues:_arrMinutes withTextAlign:NSTextAlignmentCenter andTextSize:18];
     _svMins.tag = 2;
     [_svMins setDelegate:self];
     [_svMins setDataSource:self];
     
     //Create the fourth column (meridians) of the picker
-    _svMeridians = [[SBPickerScrollView alloc] initWithFrame:CGRectMake(_svMins.frame.origin.x+SV_MINUTES_WIDTH, 0.0, SV_MERIDIANS_WIDTH, PICKER_HEIGHT) andValues:_arrMeridians withTextAlign:NSTextAlignmentLeft andTextSize:14.0];
+    _svMeridians = [[SBPickerScrollView alloc] initWithFrame:CGRectMake(_svMins.frame.origin.x+self.frame.size.width*66/320, 0.0, self.frame.size.width*66/320, PICKER_HEIGHT) andValues:_arrMeridians withTextAlign:NSTextAlignmentLeft andTextSize:18];
     _svMeridians.tag = 3;
     [_svMeridians setDelegate:self];
     [_svMeridians setDataSource:self];
     
     
     //Create separators lines
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(SV_DAYS_WIDTH-1.0, 0.0, 2.0, PICKER_HEIGHT)];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(self.frame.size.width*122/320-1.0, 0.0, 2.0, PICKER_HEIGHT)];
     [line setBackgroundColor:LINE_COLOR];
     
-    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(_svHours.frame.origin.x+SV_HOURS_WIDTH-1.0, 0.0, 2.0, PICKER_HEIGHT)];
+    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(_svHours.frame.origin.x+self.frame.size.width*66/320-1.0, 0.0, 2.0, PICKER_HEIGHT)];
     [line2 setBackgroundColor:LINE_COLOR];
     
-    UIView *line3 = [[UIView alloc] initWithFrame:CGRectMake(_svMins.frame.origin.x+SV_MINUTES_WIDTH-1.0, 0.0, 2.0, PICKER_HEIGHT)];
+    UIView *line3 = [[UIView alloc] initWithFrame:CGRectMake(_svMins.frame.origin.x+self.frame.size.width*66/320-1.0, 0.0, 2.0, PICKER_HEIGHT)];
     [line3 setBackgroundColor:LINE_COLOR];
     
     
@@ -499,7 +499,7 @@ const float LBL_BORDER_OFFSET = 8.0;
 //Switch to the previous or next day
 - (void)switchToDay:(NSInteger)dayOffset {
     //Calculate and save the new date
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *offsetComponents = [NSDateComponents new];
     
     //Set the offset
@@ -515,7 +515,7 @@ const float LBL_BORDER_OFFSET = 8.0;
 - (void)switchToDayPrev {
     //Check if the again previous day is a past day and in this case i disable the button
     //Calculate the new date
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *offsetComponents = [NSDateComponents new];
     
     //Set the offset
@@ -546,9 +546,10 @@ const float LBL_BORDER_OFFSET = 8.0;
 //Check the screen size
 - (void)checkScreenSize {
     if(IS_WIDESCREEN) {
-        PICKER_HEIGHT = (568 - SAVE_AREA_HEIGHT);
+        //1000
+        PICKER_HEIGHT = (self.frame.size.height);
     } else {
-        PICKER_HEIGHT = (568 - SAVE_AREA_HEIGHT);
+        PICKER_HEIGHT = (self.frame.size.height);
     }
 }
 
@@ -611,8 +612,10 @@ const float LBL_BORDER_OFFSET = 8.0;
         cell.textLabel.adjustsFontSizeToFitWidth = YES;
     }
     
+    [cell.textLabel setFont:(indexPath.row == sv.tagLastSelected) ? sv.boldCellFont : sv.cellFont];
     [cell.textLabel setTextColor:(indexPath.row == sv.tagLastSelected) ? SELECTED_TEXT_COLOR : TEXT_COLOR];
     [cell.textLabel setText:sv.arrValues[indexPath.row]];
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
     
     return cell;
 }
