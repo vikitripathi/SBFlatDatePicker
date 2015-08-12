@@ -235,7 +235,7 @@ const float LBL_BORDER_OFFSET = 8.0;
 //custom intialize based on desired forward/backward days
 -(void)initializeCalendarDays{
     
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDate* current_Date = [NSDate date];
     NSMutableArray* calendarDates = [[NSMutableArray alloc] init];
     NSMutableArray* calendarTexts = [[NSMutableArray alloc] init];
