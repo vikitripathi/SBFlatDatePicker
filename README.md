@@ -36,11 +36,11 @@ Simply copy the source files into your project !
 // You can customize the days or minutes with an NSIndexSet as follows
 
     //OPTIONAL - Choose Date Range (0 starts At today). 
-    //Non continous sets acceptable (use some enumeration) 
+    //Non continuous sets acceptable (use some enumeration) 
     datePicker.dayRange = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 60)]; //will show days ranging from today out for 60 days
     
     //OPTIONAL - Choose Minute  
-    //Non continous sets acceptable (use some enumeration for [indexSet addIndex:yourIndex];
+    //Non continuous sets acceptable (use some enumeration for [indexSet addIndex:yourIndex];
     datePicker.minuterange = [NSMutableIndexSet indexSet];
     [datePicker.minuterange addIndex:0];
     [datePicker.minuterange addIndex:15];
