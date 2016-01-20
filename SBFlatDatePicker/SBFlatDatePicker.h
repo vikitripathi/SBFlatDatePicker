@@ -38,10 +38,18 @@
 
 //Format of Day column
 @property NSString* dayFormat;
-
+// 24 Hour Format
+@property BOOL twenthyFourHourMode;
 
 @property (nonatomic, weak) id<SBFLatDatePickerDelegate> delegate;
 @property (nonatomic, strong, readonly) NSDate *selectedDate;
+
+// Customize The Layout of The Slideout. The widths should add to the screen size (self.frame.size.width)
+@property float daysColumnXValue; // default is 0
+@property float daysColumnWidthValue;
+@property float hoursColumnWidthValue;
+@property float minColumnWidthValue;
+@property float meridianColumnWidth;
 
 
 

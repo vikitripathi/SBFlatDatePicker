@@ -209,6 +209,12 @@ const float LBL_BORDER_OFFSET = 8.0;
     for(int i=1; i<=12; i++) {
         [arrHours addObject:[NSString stringWithFormat:@"%@%d",(i<10) ? @"0":@"", i]];
     }
+    if(self.twenthyFourHourMode){
+        for(int i=12; i<=24; i++) {
+            [arrHours addObject:[NSString stringWithFormat:@"%@%d",(i<10) ? @"0":@"", i]];
+        }
+    }
+
     _arrHours = [NSArray arrayWithArray:arrHours];
     
     //Set the acutal date
@@ -283,41 +289,64 @@ const float LBL_BORDER_OFFSET = 8.0;
     UIView *barSel = [[UIView alloc] initWithFrame:CGRectMake(0.0, BAR_SEL_ORIGIN_Y, self.frame.size.width, VALUE_HEIGHT)];
     [barSel setBackgroundColor:BAR_SEL_COLOR];
     
+    // X values and width of each column
+    self.daysColumnXValue = 0.0;
+    if(!self.daysColumnWidthValue){
+        self.daysColumnWidthValue = self.twenthyFourHourMode ? self.frame.size.width*134/320 : self.frame.size.width*122/320;
+    }
+    if(!self.hoursColumnWidthValue){
+        self.hoursColumnWidthValue =  self.twenthyFourHourMode ? self.frame.size.width*93/320 : self.frame.size.width*66/320;
+    }
+    if(!self.minColumnWidthValue){
+        self.minColumnWidthValue =   self.twenthyFourHourMode ? self.frame.size.width*93/320 : self.frame.size.width*66/320;
+    }
+    if (!self.meridianColumnWidth){
+        self.meridianColumnWidth = self.twenthyFourHourMode ? 0 : self.frame.size.width*66/320;
+    }
     
-    //Create the first column (moments) of the picker
-    _svDays = [[SBPickerScrollView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.frame.size.width*122/320, PICKER_HEIGHT) andValues:_arrDays withTextAlign:NSTextAlignmentRight andTextSize:18];
+    
+    //Create the first column (days) of the picker
+    _svDays = [[SBPickerScrollView alloc] initWithFrame:CGRectMake(self.daysColumnXValue, 0.0, _daysColumnWidthValue, PICKER_HEIGHT) andValues:_arrDays withTextAlign:NSTextAlignmentRight andTextSize:18];
     _svDays.tag = 0;
     [_svDays setDelegate:self];
     [_svDays setDataSource:self];
     
+    //Create separators lines
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(self.daysColumnXValue + _daysColumnWidthValue-1.0, 0.0, 2.0, PICKER_HEIGHT)];
+    [line setBackgroundColor:LINE_COLOR];
+
+    
     //Create the second column (hours) of the picker
-    _svHours = [[SBPickerScrollView alloc] initWithFrame:CGRectMake(self.frame.size.width*122/320, 0.0, self.frame.size.width*66/320, PICKER_HEIGHT) andValues:_arrHours withTextAlign:NSTextAlignmentCenter  andTextSize:18];
+    
+    
+    _svHours = [[SBPickerScrollView alloc] initWithFrame:CGRectMake(_daysColumnWidthValue, 0.0, _hoursColumnWidthValue, PICKER_HEIGHT) andValues:_arrHours withTextAlign:NSTextAlignmentCenter  andTextSize:18];
     _svHours.tag = 1;
     [_svHours setDelegate:self];
     [_svHours setDataSource:self];
     
+    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(_svHours.frame.origin.x+_hoursColumnWidthValue, 0.0, 2.0, PICKER_HEIGHT)];
+    [line2 setBackgroundColor:LINE_COLOR];
+
+    
     //Create the third column (minutes) of the picker
-    _svMins = [[SBPickerScrollView alloc] initWithFrame:CGRectMake(_svHours.frame.origin.x+self.frame.size.width*66/320, 0.0, self.frame.size.width*66/320, PICKER_HEIGHT) andValues:_arrMinutes withTextAlign:NSTextAlignmentCenter andTextSize:18];
+    _svMins = [[SBPickerScrollView alloc] initWithFrame:CGRectMake(_svHours.frame.origin.x+_minColumnWidthValue, 0.0, _minColumnWidthValue, PICKER_HEIGHT) andValues:_arrMinutes withTextAlign:NSTextAlignmentCenter andTextSize:18];
     _svMins.tag = 2;
     [_svMins setDelegate:self];
     [_svMins setDataSource:self];
     
+    UIView *line3 = [[UIView alloc] initWithFrame:CGRectMake(_svMins.frame.origin.x+_minColumnWidthValue-1.0, 0.0, 2.0, PICKER_HEIGHT)];
+    [line3 setBackgroundColor:LINE_COLOR];
+
+    
     //Create the fourth column (meridians) of the picker
-    _svMeridians = [[SBPickerScrollView alloc] initWithFrame:CGRectMake(_svMins.frame.origin.x+self.frame.size.width*66/320, 0.0, self.frame.size.width*66/320, PICKER_HEIGHT) andValues:_arrMeridians withTextAlign:NSTextAlignmentLeft andTextSize:18];
+    _svMeridians = [[SBPickerScrollView alloc] initWithFrame:CGRectMake(_svMins.frame.origin.x+_meridianColumnWidth, 0.0, _meridianColumnWidth, PICKER_HEIGHT) andValues:_arrMeridians withTextAlign:NSTextAlignmentLeft andTextSize:18];
     _svMeridians.tag = 3;
     [_svMeridians setDelegate:self];
     [_svMeridians setDataSource:self];
     
     
-    //Create separators lines
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(self.frame.size.width*122/320-1.0, 0.0, 2.0, PICKER_HEIGHT)];
-    [line setBackgroundColor:LINE_COLOR];
     
-    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(_svHours.frame.origin.x+self.frame.size.width*66/320-1.0, 0.0, 2.0, PICKER_HEIGHT)];
-    [line2 setBackgroundColor:LINE_COLOR];
     
-    UIView *line3 = [[UIView alloc] initWithFrame:CGRectMake(_svMins.frame.origin.x+self.frame.size.width*66/320-1.0, 0.0, 2.0, PICKER_HEIGHT)];
-    [line3 setBackgroundColor:LINE_COLOR];
     
     
     //Layer gradient
