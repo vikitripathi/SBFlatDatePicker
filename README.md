@@ -33,6 +33,10 @@ Simply copy the source files into your project !
 
 ``` objective-c
 // The default settings are a date time picker with dates ranging from Today to 365+ (or one year) and minutes from 0-60
+
+//You can set the phone to 24 hour mode by setting the property
+    datePicker.twenthyFourHourMode = TRUE;
+
 // You can customize the days or minutes with an NSIndexSet as follows
 
     //OPTIONAL - Choose Date Range (0 starts At today). 
@@ -49,6 +53,13 @@ Simply copy the source files into your project !
     
     //Customize date format
     datePicker.dayFormat = @"EEE MMM dd";
+    
+    // Customize The Layout of The DatePicker column widths. The widths should add to the screen size (self.frame.size.width)
+    datePicker.daysColumnXValue; // default is 0
+    datePicker.daysColumnWidthValue;
+    datePicker.hoursColumnWidthValue;
+    datePicker.minColumnWidthValue;
+    datePicker.meridianColumnWidth;
 
 ``` 
 
